@@ -19,29 +19,52 @@ Estrutura para funcionar (Server Linux, WAMPP, XAMPP, Laragon) - Ambiente de des
 
 // echo "Olá TDS01, seus lindos!"; // Console.WriteLine() no C#
 
-?>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1><?php echo "Olá TDS01, seus lindos!"; ?> </h1>
-    
-    <?php
-        $nome = "Ghost"; // toda e qualquer variável no php é declarada iniciando com "$"
-        $idade = 100;
-        $email = "ghost@gmail.com"
-    ?>
-    <h2>
-        <?php 
-        // demonstra a concatenação de strings (.)
-            echo "Meu nome é ".$nome.",\n tenho ".$idade." anos de idade,\n e meu email é ".$email
-        ?>
-    </h2>
-    
+// declaração de variáveis no PHP 
+$A123;
 
-</body>
-</html>
+// $x = 1.6; // = (atribuição ) / == (comparação) / === (comparação absoluta tipo e valor)
+// $X = 2; // php é case sensitive (faz distinção entre maisúculo e minúsculo)
+//echo $x.$X; // . serve para concatenar string
+
+$escola = "Senac";
+$numero = "8266";
+$valorOnibus = 2.50;
+$portaoAberto = true;
+
+echo "Estudo no $escola 
+no $numero da Av Itaquera, 
+e o pago R$ $valorOnibus na passagem. Aberto: $portaoAberto ";
+echo "<br>";
+
+// variavel globais no PHP
+//print_r ($_SESSION);
+
+// constantes no PHP
+define("TESTE", "Conteúdo de uma contante");
+define("DB_NAME", "ComercialDB01");
+define("DB_USER", "root");
+define("DB_PASSWD", "312313cba");
+define("DB_SERVER", "10.91.47.131");
+
+echo DB_NAME." - ".DB_USER;
+echo "<br>";
+// operadores no PHP
+$a = 5;
+$b = 2;
+
+echo -$a. "<br>"; // multiplica por -1
+echo $b."<br>";
+echo "$a + $b = ".$a+$b. "<br>"; // adição
+echo "$a - $b = ".$a-$b. "<br>"; //subtração
+echo "$a x $b = ".$a*$b. "<br>"; // multiplicação
+echo "$a / $b = ".$a/$b. "<br>"; // divisão
+echo "$b % $a = ".$b%$a. "<br>"; // resto da divisão (mod)
+echo "$a ** $b = ".$a**$b. "<br>"; // exponenciação
+
+echo "$a com incremento de 1 = ".++$a. "<br>"; // incremento de A
+echo "$b com decremento de 1 = ".--$b. "<br>"; // incremento de B
+
+echo "b - $b / a - $a <br>";
+
+
+?>
