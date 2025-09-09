@@ -21,6 +21,7 @@ echo "Entrega prevista para: ". $prazo->format('d/m/y')."<br>";
 $dataVencimento = new DateTime('2025-09-01');
 $dataPagamento = new Datetime('2025-09-15');
 $diasAtraso = $dataVencimento->diff($dataPagamento);
-echo $diasAtraso->format('%a dias de atraso').'<br>';
 
+// echo $diasAtraso->format('%a dias de atraso').'<br>';
+echo $diasAtraso-> days. " dias de atraso" ;
 ?>
