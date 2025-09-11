@@ -22,7 +22,7 @@ echo "A string possui ".strlen(trim($nomeProduto)). ' <br>';
 $email = "Andressa@GMAIL.COM";
 echo "Email digitado: ". strtolower(trim($email)). "<br>";
 
-$frase = "O| Senac| Itaquera| é |bem| legal";
+$frase = "O Senac Itaquera é bem legal";
 echo "Nós estamos no ". substr(trim($frase),2,5 ). "<br>";
 
 $slug = strtolower(str_replace(" ","-", trim($nomeProduto)));

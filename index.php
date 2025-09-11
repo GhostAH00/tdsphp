@@ -40,13 +40,13 @@ echo "<br>";
 //print_r ($_SESSION);
 
 // constantes no PHP
-define("TESTE", "Conteúdo de uma contante");
-define("DB_NAME", "ComercialDB01");
-define("DB_USER", "root");
-define("DB_PASSWD", "312313cba");
-define("DB_SERVER", "10.91.47.131");
+// define("TESTE", "Conteúdo de uma contante");
+// define("DB_NAME", "ComercialDB01");
+// define("DB_USER", "root");
+// define("DB_PASSWD", "20270");
+// define("DB_SERVER", "10.91.47.131");
 
-echo DB_NAME." - ".DB_USER;
+// echo DB_NAME." - ".DB_USER;
 echo "<br>";
 // operadores no PHP
 $a = 5;
