@@ -1,63 +1,59 @@
 <?php 
-
-// Estruturas condicionais (if, if...else, if, elseif...else, switch, ?:(ternário), null - ?? (coalecência))
+ 
+// estruturas condicionais (if, if..else, if...elseif...else, switch, ?:(ternário), null - ?? (coalecência) )  
 
 #Ex 1
 $idade = 18; // if simples
-
-if  ($idade >= 18) {
-    echo"Você é maior de idade.";
-}
-echo"<br>";
+if ($idade >= 18) {
+    echo "Você é maior de idade.";
+} 
+ echo "<br>";
 
 #Ex 2
-$numero = 5;
-if ($numero % 2 == 0) {
-    echo "Número par";
+ $num = 5;
+if ($num % 2 == 0) { 
+   echo "Número par";
 } else {
-    echo "Número impar";
+    echo "Número ímpar"; // 5 é ímpar
 }
-echo"<br>";
+echo "<br>";
 
 #Ex 3
-$nota = 9.5;
-if($nota >=9){
-   echo "Execelente!";
-} elseif($nota >= 5){
-    echo "Aprovado!";
+$nota = 7;
+if ($nota >= 9) {
+    echo "Excelente!!";
+} elseif ($nota >=6 ) {
+    echo "Aprovado";
 } else {
-    echo "Reprovado!";
+    echo "Reprovado";
 }
-echo"<br>";
+echo "<br>";
 
-#Ex 4
-$dia = 3;
+#Ex 4  
+$dia = 1;
 switch ($dia) {
-    case 1: echo "Domingo"; break;
-    case 2: echo "Segunda"; break;
-    case 3: echo "Terça"; break;
-    default: echo "Outro dia da semana"; break;
+    case 1: echo "Domingo";  break;
+    case 2: echo "Segunda";  break;
+    case 3: echo "Terça";  break;
+    default: echo "Outro dia da semana."; break;
 }
-echo"<br>";
+echo "<br>";
 
-#Ex 5
-$login = false;
-echo $login ? "Bem-vindo!":"Acesso negado!";
+#Ex 5 
+$login = true;
+echo $login ? "Bem-vindo!" : "Acesso negado!";
 echo "<br>";
 
 #Ex 6
-// if (isset($login)){
-//     echo "A variável login tem um valor atribuído";
-// }
-$nome = $_GET["nome"] ?? "Visitante"; // coalecência
+$nome = $_GET['nome'] ?? "Visitante"; // coalecência
 echo "Olá $nome";
 echo "<br>";
 
-// Laços de reptição - while, do... while, for, foreach, controle  de laços (break e continue )
-echo "<br> Laços de reptição - while, do... while, for, foreach <br>"; 
+// Laços de repetição  - while, do...while, for, foreach, controle de laço (break e continue)
+echo "<br> Laços de repetição  - while, do...while, for, foreach <br> ";
 #Ex 1
-$i =1;
-while ($i <= 5) {
+$i = 1;
+while ($i <= 5){
     echo "Contando: $i <br>";
     $i++;
 }
@@ -65,87 +61,77 @@ echo "<br>";
 
 #Ex 2 
 $j = 1;
-do{
-    echo "Número $j ";
+do {
+    echo "Número $j  ";
     $j++;
 }while($j <= 3);
 echo "<br>";
 
 #Ex 3
-for ($k = 1; $k <= 5; $k++) {
+for ($k = 1; $k <= 5; $k++){
     echo "Valor: $k <br>";
 }
-echo "<br>";
 
 #Ex 4
-
-$frutas = ["Nome" =>"Maca","Tipo"=>"Gala","Validade"=>"out/2025"];
-foreach($frutas as $chave => $valor) {
-    echo "$chave: $valor <br>" ;
+$frutas = ["nome"=>"Maça","Tipo"=>"Gala","Validade"=>"out/2025"];
+foreach ($frutas as $chave => $valor) {
+   echo "$chave: $valor <br>" ;
 }
 echo "<br>";
+#Ex 4.1
 $carros = ["Fusca", "Gol", "Corsa", "Kombi"];
-foreach($carros as $carro) {
-    echo"Carro: $carro <br>";
+foreach($carros as $carro){
+    echo "Carro: $carro <br>";
 }
-echo "<br>";
 
+echo "<br>";
 #Ex 5
-for ($k = 1; $k <= 5; $k++) {
-    if ($k == 2) continue; // pula no 2
+for ($k = 1; $k <= 5; $k++){
+    if ($k == 2) continue; // pula o 2
     if ($k == 4) break; // para no 4
-    echo"Valor :  $k <br>";
+    echo "Valor: $k <br>";
 }
-echo "<br>";
-
-// Marizes no PHP
-/*Arrays indexados / Arrays associativos / Arrays multidimensionais
+ 
+// Matrizes no PHP
+/*Arrays indexados / Arrays associativos /Arrays multidimensionais
 Funções úteis para arrays (count, array_push, in_array, array_keys, sort, rsort)
 */
-
 echo "<br> Matrizes <br>";
 echo "<br>";
-#Ex 1 
-$numeros = [10, 20, 30];
-echo $numeros[0];
+#Ex 1 - simples
+$numeros = [10,20,30];
+echo $numeros[0]; 
 echo "<br>";
-
 #Ex 2 - Associativa
-$veiculos = ['Tipo'=>"Carro", 'Marca'=>"Toyota", 'Modelo'=> "Corolla", 'Ano'=>2022];
-echo $veiculos['Modelo'];
+$veiculos = ['Tipo'=>"Carro",'Marca'=>"Toyota",'Modelo'=>"Corolla",'Ano'=>2022];
+echo $veiculos['Marca'];
 echo "<br>";
-
-#Ex 3 - Mulidimensional 
+#Ex 3 - multidimensional
 $alunos=[
-    ['Nome'=> 'Rafael', 'Idade'=> 26],
-    ['Nome'=> 'Crystal', 'Idade'=> 16],
-    ['Nome'=> 'Paola', 'Idade'=> 28]
+    ['nome'=>'Ana','idade'=>'19'],
+    ['nome'=>'Maria','idade'=>'18'],
+    ['nome'=>'José','idade'=>'21']
 ];
-echo $alunos[0]['Nome']." ". $alunos[0]['Idade'];
+echo $alunos[0]['nome']." ". $alunos[2]['idade'] ;
 echo "<br>";
 $alunosjson = json_encode($alunos);
 print_r($alunosjson);
 echo "<br>";
-
 #Ex 4 - Usando count
 $cores = ["Azul", "Verde", "Amarelo"];
-echo "Quantidade: ".count($cores);
-
-#Ex 5 - Inserindo
+echo "Quantidade: ". count($cores);
+echo "<br>";
+#Ex 5 - Inserindo com array_push
 $animais = ['Cachorro', 'Gato'];
-array_push($animais, "Pássaro"); // Inserido no final da matriz via push
+array_push($animais, "Pássaro"); // inserido no final da matriz via push
 print_r($animais);
 echo "<br>";
-
-#Ex 6 - Ordenando array
-$valores = [5, 3, 9, 1, 7, 4];
+#Ex 6  - Ordenando array
+$valores = [5,3,9,1,7,4];
 sort($valores);
 print_r($valores);
-
-
 ?>
-
-<!-- <form action="estruturas.php" method="get">
-    <input type="text" name="nome" id="" placeholder="Digite seu nome">
+<form action="estruturas.php" method="get">
+    <input type="text" name="nome" id="" placeholder="Digite o nome" >
     <button type="submit">Entrar</button>
-</form> -->
+</form>

@@ -1,70 +1,62 @@
 <?php
-
-// comentário
-/* comentário de bloco */
-# comentário de linha
-
-/* 
-Compreender o que é o PHP e para que serve
-Configurar o ambiente básico para execução de scripts PHP.
-Escrever os primeiros programas utilizando PHP.
-
-PHP é uma linguagem de programação voltada principalmente para dev WEB
-Server-side - roda(é executada) do lado do servidor 
-Funciona em conjunto com HTML, CSS, JS e intregra com Banco com dados Mysql, postgreSql, Oracle, SQL Server, etc.
-Nasceu em 1994; 
-Estrutura para funcionar (Server Linux, WAMPP, XAMPP, Laragon) - Ambiente de desenvolvimento
-
-*/
-
-// echo "Olá TDS01, seus lindos!"; // Console.WriteLine() no C#
-
-// declaração de variáveis no PHP 
-$A123;
-
-// $x = 1.6; // = (atribuição ) / == (comparação) / === (comparação absoluta tipo e valor)
-// $X = 2; // php é case sensitive (faz distinção entre maisúculo e minúsculo)
-//echo $x.$X; // . serve para concatenar string
-
-$escola = "Senac";
-$numero = "8266";
-$valorOnibus = 2.50;
-$portaoAberto = true;
-
-echo "Estudo no $escola 
-no $numero da Av Itaquera, 
-e o pago R$ $valorOnibus na passagem. Aberto: $portaoAberto ";
-echo "<br>";
-
-// variavel globais no PHP
-//print_r ($_SESSION);
-
-// constantes no PHP
-// define("TESTE", "Conteúdo de uma contante");
-// define("DB_NAME", "ComercialDB01");
-// define("DB_USER", "root");
-// define("DB_PASSWD", "20270");
-// define("DB_SERVER", "10.91.47.131");
-
-// echo DB_NAME." - ".DB_USER;
-echo "<br>";
-// operadores no PHP
-$a = 5;
-$b = 2;
-
-echo -$a. "<br>"; // multiplica por -1
-echo $b."<br>";
-echo "$a + $b = ".$a+$b. "<br>"; // adição
-echo "$a - $b = ".$a-$b. "<br>"; //subtração
-echo "$a x $b = ".$a*$b. "<br>"; // multiplicação
-echo "$a / $b = ".$a/$b. "<br>"; // divisão
-echo "$b % $a = ".$b%$a. "<br>"; // resto da divisão (mod)
-echo "$a ** $b = ".$a**$b. "<br>"; // exponenciação
-
-echo "$a com incremento de 1 = ".++$a. "<br>"; // incremento de A
-echo "$b com decremento de 1 = ".--$b. "<br>"; // incremento de B
-
-echo "b - $b / a - $a <br>";
-
-
+require_once "funcoes.php";
+// Ações do cadastro (Insert, select, update e delete - CRUD)
+if($_SERVER["REQUEST_METHOD"]==="POST"){
+    if(isset($_POST["inserir"])){
+        inserirProduto($_POST["nome"], (float)$_POST["preco"]);
+    }
+    if(isset($_POST["editar"])){
+        editarProduto((int)$_POST["id"], $_POST["nome"], (float)$_POST["preco"]);
+    } 
+}
+if(isset($_GET["excluir"])){
+    excluirProduto((int)$_GET["excluir"]);
+}
+$produtos = listarProdutos();
+// print_r($produto);
+// var_dump($produto);
 ?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD de Produtos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+<body class="container mt-4">
+
+    <h2>Cadastro de Produtos</h2>
+    <form  method="POST" class="mb-3">
+        <input type="text" name="nome" placeholder="Nome do produto" required class="form-control mb-2">
+        <input type="number" step="0.01" name="preco" placeholder="Preço" required class="form-control mb-2">
+        <button type="submit" name="inserir" class="btn btn-success">Inserir</button>
+    </form>
+
+    <h3>Lista de Produtos</h3>
+    <table class="table table-bordered table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Preço</th>
+        <th>Data Cad</th>
+        <th>Ações</th>
+    </tr>
+    <?php foreach($produtos as $produto):?>
+        <tr>
+            <td><?= $produto['id']?></td> 
+            <td><?= htmlspecialchars($produto['nome'])?></td>
+            <td><?= formatarPreco($produto['preco']) ?></td>
+            <td><?= date("d/m/Y H:i", strtotime($produto['datacad'])) ?></td> 
+            <td class="d-flex gap-2" >
+                <a href="editar.php?id=<?= $produto['id']?>" class="btn btn-warning btn-sm">Editar</a>
+                <a href="index.php?excluir=<?= $produto['id']?>" class="btn btn-danger btn-sm" onclick="return confirm('Excluir Produto?')">Excluir</a>
+            </td>       
+        </tr>
+    <?php endforeach;?>
+
+
+    </table>
+
+</body>
+</html>
