@@ -1,5 +1,5 @@
 <?php 
-// include once "db.php";
+include_once "db.php";
 
 // PDO com PHP (Classes PHP)
 class Usuario{
@@ -9,9 +9,11 @@ class Usuario{
     private $email;
     private $datacad;
     private $pdo;
-    public function __construct($pdo){
+
+    public function __construct(){
         $this-> pdo = getConnection(); // Realiza a conexão durante a criação da instância (objeto)
     }
+    
     // Getters e Setters - Propriedades (C#) ou métodos de acesso das linguagens de prog.
     public function getId(){
         return $this->id; // não vamos criar setId??? porque o banco é quem atribui (autoincrements)
@@ -20,8 +22,8 @@ class Usuario{
     public function getNome(){
         return $this->nome;
     }    
-    public function setNome($nome){
-        $this->nome - $nome;
+    public function setNome(string $nome){
+        $this->nome = $nome;
     }
 
      public function getEmail(){
@@ -39,8 +41,8 @@ class Usuario{
     public function inserir(){
         $sql = "insert into usuarios (nome, email, datacad) values (:nome, :email, default)";
         $cmd = $this->pdo->prepare($sql);
-        $cmd->bindParam(":nome", $this->nome); // (C#) cmd.Paramentrs.AddWithValue("spnome", Nome);
-        $cmd ->bindParam(":email", $this->email);
+        $cmd->bindValue(":nome", $this->nome); // (C#) cmd.Paramentrs.AddWithValue("spnome", Nome);
+        $cmd ->bindValue(":email", $this->email);
         $cmd->execute();
         if($cmd->execute()){
             $this->id = $this->pdo->lastInsertId();
@@ -53,6 +55,7 @@ class Usuario{
         $cmd = $this -> pdo -> query("select * from usuarios order by id desc");
         return $cmd->fetchAll(PDO::FETCH_ASSOC);
     }
+
     // buscar usuarios por id
     public function buscarPorId(int $id){
         $sql = "select * from usuarios where id = :id";
@@ -70,10 +73,6 @@ class Usuario{
         return false;
     }
 }
-
-
-
-
 
 ?>
 
