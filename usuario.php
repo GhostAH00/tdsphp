@@ -50,6 +50,31 @@ class Usuario{
         }
         return false;
     }
+
+    //Atualizar usuario
+    public function atualizar(int $idUpdate){
+        if(!$this->id) return false;
+
+        $sql = "UPDATE usuarios SET nome = :nome, email = :email WHERE id = :id";
+        $cmd = $this->pdo->prepare($sql);
+        $cmd->bindValue(":nome", $this->nome);
+        $cmd->bindValue(":email", $this->email);
+        $cmd->bindValue(":id", $this-> id, PDO::PARAM_INT);
+
+        return $cmd->execute();
+    }
+
+    // Remover usuario
+    public function exluir(){
+        if(!$this->id) return false;
+
+        $sql = "DELETE FROM usuarios WHERE id = :id";
+        $cmd = $this->pdo->prepare($sql);
+        $cmd->bindValue(":id", $this->id, PDO::PARAM_INT);
+
+        return $cmd->execute();
+    }
+
     // listando usuarios
     public function listrar(): array{
         $cmd = $this -> pdo -> query("select * from usuarios order by id desc");
